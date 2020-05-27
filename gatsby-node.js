@@ -27,6 +27,13 @@ exports.createPages = async ({ graphql, actions }) => {
               summary
               tech_stack
             }
+            header_backgound_color {
+              color
+              audience {
+                id
+                audience_id
+              }
+            }
           }
         }
       }

@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import "./profile.css"
 import Layout from "../components/layout"
+import { SDK, Audience, IpLocation } from "../personalization"
 
 const WorkExperienceTile = (workExperience) => {
   const Title = () => {
@@ -33,10 +34,34 @@ const WorkExperienceTile = (workExperience) => {
 }
 
 const ProfileTemplate = ({ pageContext }) => {
-  const { profile } = pageContext
+  const [personalizationReady, setPersonalizationReady] = useState(false);
+  const [headerColor, setHeaderColor] = useState('rebeccapurple');
+  const { profile } = pageContext;
+
+  useEffect(() => {
+    async function personalize() {
+      const locationInfo = await IpLocation.getLocationInfo();
+      await SDK.init('blt2479e118d984e036');
+
+      SDK.set(locationInfo);
+
+      profile.header_backgound_color.forEach((colorForAudience) => {
+        const audience = Audience.forId(colorForAudience.audience[0].audience_id);
+        if (audience.isActive()) {
+          setHeaderColor(colorForAudience.color);
+        }
+      });
+      setPersonalizationReady(true);
+    }
+    personalize();
+  });
+
+  if (!personalizationReady) {
+    return null;
+  }
 
   return (
-    <Layout>
+    <Layout headerColor={headerColor}>
       <img src={profile.display_picture.url} className="display-picture" />
       <h1>{profile.given_name} {profile.surname}</h1>
       <i>{profile.current_title}</i>
