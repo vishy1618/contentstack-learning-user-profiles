@@ -27,6 +27,9 @@ export class Audience {
   }
 
   isActive() {
+    console.log('attribute key', this.attribute.key);
+    console.log('attribute value', this.attributeValue);
+    console.log('SDK.attributes[this.attribute.key]', SDK.attributes[this.attribute.key]);
     return SDK.attributes[this.attribute.key] === this.attributeValue;
   }
 }

@@ -1,4 +1,4 @@
-const apiURL = 'https://0c6fce4c.ngrok.io';
+const apiURL = 'https://contentstack-personalization.herokuapp.com';
 
 export class SDK {
   static apiKey;

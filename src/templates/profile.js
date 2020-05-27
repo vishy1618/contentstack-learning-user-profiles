@@ -43,6 +43,7 @@ const ProfileTemplate = ({ pageContext }) => {
       const locationInfo = await IpLocation.getLocationInfo();
       await SDK.init('blt2479e118d984e036');
 
+      console.log('locationInfo', locationInfo)
       SDK.set(locationInfo);
 
       profile.header_backgound_color.forEach((colorForAudience) => {
