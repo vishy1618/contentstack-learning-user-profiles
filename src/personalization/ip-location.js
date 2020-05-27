@@ -1,6 +1,6 @@
 export class IpLocation {
   static async getLocationInfo() {
-    const response = await fetch('http://free.ipwhois.io/json/');
+    const response = await fetch('https://extreme-ip-lookup.com/json/');
     return response.json();
   }
 }
