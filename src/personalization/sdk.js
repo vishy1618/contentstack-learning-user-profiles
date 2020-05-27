@@ -1,4 +1,4 @@
-const apiURL = 'http://0c6fce4c.ngrok.io';
+const apiURL = 'https://0c6fce4c.ngrok.io';
 
 export class SDK {
   static apiKey;
