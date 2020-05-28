@@ -29,9 +29,9 @@ exports.createPages = async ({ graphql, actions }) => {
             }
             header_backgound_color {
               color
-              audience {
-                id
-                audience_id
+              personalization_audience {
+                _id
+                name
               }
             }
           }

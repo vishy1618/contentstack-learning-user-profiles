@@ -47,7 +47,7 @@ const ProfileTemplate = ({ pageContext }) => {
       SDK.set(locationInfo);
 
       profile.header_backgound_color.forEach((colorForAudience) => {
-        const audience = Audience.forId(colorForAudience.audience[0].audience_id);
+        const audience = Audience.forId(colorForAudience.personalization_audience._id);
         if (audience.isActive()) {
           setHeaderColor(colorForAudience.color);
         }
