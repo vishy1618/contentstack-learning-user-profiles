@@ -1,7 +1,14 @@
-import React, { useState, useEffect } from "react"
 import "./profile.css"
+
+import React, {
+  useEffect,
+  useState
+} from "react"
+
+import Personalization from "personalization-sdk-js"
+
 import Layout from "../components/layout"
-import { SDK, Audience, IpLocation } from "../personalization"
+import { IpLocation } from "../personalization"
 
 const WorkExperienceTile = (workExperience) => {
   const Title = () => {
@@ -41,14 +48,13 @@ const ProfileTemplate = ({ pageContext }) => {
   useEffect(() => {
     async function personalize() {
       const locationInfo = await IpLocation.getLocationInfo();
-      await SDK.init('blt2479e118d984e036');
+      await Personalization.init('blt2479e118d984e036');
 
       console.log('locationInfo', locationInfo)
-      SDK.set(locationInfo);
+      Personalization.set(locationInfo);
 
       profile.header_backgound_color.forEach((colorForAudience) => {
-        const audience = Audience.forId(colorForAudience.personalization_audience._id);
-        if (audience.isActive()) {
+        if (Personalization.isAudienceActive(colorForAudience.personalization_audience._id)) {
           setHeaderColor(colorForAudience.color);
         }
       });
