@@ -1,4 +1,7 @@
-import React from "react"
+import React, {
+  useEffect,
+  useState
+} from "react"
 
 import {
   graphql,
@@ -27,6 +30,14 @@ const OperatingSystemUseCase = () => {
     }
   `);
   const storeBadges = data.csOsusecase.store_badges;
+  const [personalizationReady, setPersonalizationReady] = useState(false);
+  useEffect(() => {
+    setPersonalizationReady(true);
+  });
+
+  if (!personalizationReady) {
+    return null;
+  }
 
   return (
     <Layout>
@@ -34,7 +45,7 @@ const OperatingSystemUseCase = () => {
         <h1>Download Legends of Runeterra now!</h1>
         {
           storeBadges
-            .sort((badge1, badge2) => {
+            .sort((badge1, _) => {
               const audienceId = badge1.highlight_for_audience._id;
               if (Personalization.isAudienceActive(audienceId)) {
                 return -1;
