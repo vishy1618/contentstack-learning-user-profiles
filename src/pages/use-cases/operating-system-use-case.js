@@ -1,7 +1,4 @@
-import React, {
-  useEffect,
-  useState
-} from "react"
+import React from "react"
 
 import {
   graphql,
@@ -30,12 +27,8 @@ const OperatingSystemUseCase = () => {
     }
   `);
   const storeBadges = data.csOsusecase.store_badges;
-  const [personalizationReady, setPersonalizationReady] = useState(false);
-  useEffect(() => {
-    setPersonalizationReady(true);
-  });
 
-  if (!personalizationReady) {
+  if (!Personalization.isInitialized()) {
     return null;
   }
 

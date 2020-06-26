@@ -11,6 +11,9 @@ const UseCases = () => {
         <li>
           <Link to="/use-cases/operating-system-use-case">Device Types and Operating Systems</Link>
         </li>
+        <li>
+          <Link to="/use-cases/query-parameters-use-case">Query Parameters</Link>
+        </li>
       </ul>
     </Layout>
   )
