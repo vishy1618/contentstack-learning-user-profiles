@@ -7,6 +7,7 @@ import {
 import Personalization from "personalization-sdk-js"
 
 import Layout from "../../../components/layout"
+import SEO from "../../../components/seo"
 
 const Demo = () => {
   const data = useStaticQuery(graphql`
@@ -45,6 +46,7 @@ const Demo = () => {
 
   return (
     <Layout>
+      <SEO title="Query Parameters Use Case Demo" />
       <img src={heroImageUrl} />
     </Layout>
   )

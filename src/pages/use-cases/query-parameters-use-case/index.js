@@ -3,10 +3,12 @@ import React from "react"
 import { Link } from "gatsby"
 
 import Layout from "../../../components/layout"
+import SEO from "../../../components/seo"
 
 const QueryParametersUseCase = () => {
   return (
     <Layout>
+      <SEO title="Query Parameters Use Case" />
       <p>
         The demo is an e-commerce apparels website. The hero image of the website is
         personalized for BLACKFRIDAY campaign customers.

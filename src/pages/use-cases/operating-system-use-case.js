@@ -7,6 +7,7 @@ import {
 import Personalization from "personalization-sdk-js"
 
 import Layout from "../../components/layout"
+import SEO from "../../components/seo"
 
 const OperatingSystemUseCase = () => {
   const data = useStaticQuery(graphql`
@@ -34,6 +35,7 @@ const OperatingSystemUseCase = () => {
 
   return (
     <Layout>
+      <SEO title="Operating Systems Use Case" />
       <div>
         <h1>Download Legends of Runeterra now!</h1>
         {
