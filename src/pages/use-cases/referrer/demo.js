@@ -1,4 +1,7 @@
-import React, { useState } from "react"
+import React, {
+  useContext,
+  useState
+} from "react"
 
 import {
   graphql,
@@ -8,6 +11,7 @@ import Personalization from "personalization-sdk-js"
 
 import Layout from "../../../components/layout"
 import SEO from "../../../components/seo"
+import { PersonalizationContext } from "../../../personalization-context"
 
 const Demo = () => {
   const [cartVisibility, showCart] = useState(false);
@@ -24,8 +28,9 @@ const Demo = () => {
       }
     }
   `);
+  const personalizationReady = useContext(PersonalizationContext);
 
-  if (!Personalization.isInitialized()) {
+  if (!personalizationReady) {
     return null;
   }
 

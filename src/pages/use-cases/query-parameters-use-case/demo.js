@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 
 import {
   graphql,
@@ -8,6 +8,7 @@ import Personalization from "personalization-sdk-js"
 
 import Layout from "../../../components/layout"
 import SEO from "../../../components/seo"
+import { PersonalizationContext } from "../../../personalization-context"
 
 const Demo = () => {
   const data = useStaticQuery(graphql`
@@ -30,7 +31,9 @@ const Demo = () => {
     }
   `);
 
-  if (!Personalization.isInitialized()) {
+  const personalizationReady = useContext(PersonalizationContext);
+
+  if (!personalizationReady) {
     return null;
   }
 

@@ -13,6 +13,7 @@ import Personalization from "personalization-sdk-js"
 
 // You can delete this file if you're not using it
 import { IpLocation } from "./ip-location"
+import { PersonalizationContext } from "./src/personalization-context"
 
 export const wrapRootElement = ({ element }) => {
   return <Wrapper element={element} />
@@ -37,9 +38,9 @@ const Wrapper = ({ element }) => {
     personalize();
   });
 
-  if (!personalizationReady) {
-    return null;
-  }
-
-  return element;
+  return (
+    <PersonalizationContext.Provider value={personalizationReady}>
+      {element}
+    </PersonalizationContext.Provider>
+  );
 }
