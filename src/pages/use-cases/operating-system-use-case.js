@@ -15,26 +15,30 @@ const OperatingSystemUseCase = () => {
     query OSUseCaseQuery {
       csOsusecase {
         store_badges {
-          badge_link {
-            href
-          }
-          badge_image {
-            url
-          }
-          highlight_for_audience {
-            _id
+          variation_id
+          badges {
+            badge_image {
+              url
+            }
+            badge_link {
+              href
+            }
+            highlight_for_variant
           }
         }
       }
     }
   `);
-  const storeBadges = data.csOsusecase.store_badges;
-
   const personalizationReady = useContext(PersonalizationContext);
 
   if (!personalizationReady) {
     return null;
   }
+
+  const storeBadgesContainer = data.csOsusecase.store_badges;
+  const badges = storeBadgesContainer.badges;
+
+  const variant = Personalization.getActiveVariant(storeBadgesContainer.variation_id);
 
   return (
     <Layout>
@@ -42,18 +46,16 @@ const OperatingSystemUseCase = () => {
       <div>
         <h1>Download Legends of Runeterra now!</h1>
         {
-          storeBadges
+          badges
             .sort((badge1, _) => {
-              const audienceId = badge1.highlight_for_audience._id;
-              if (Personalization.isAudienceActive(audienceId)) {
+              if (badge1.highlight_for_variant === variant) {
                 return -1;
               } else {
                 return 1;
               }
             })
             .map(storeBadge => {
-              const audienceId = storeBadge.highlight_for_audience._id;
-              const height = Personalization.isAudienceActive(audienceId) ? 120 : 50;
+              const height = storeBadge.highlight_for_variant === variant ? 120 : 50;
               return (
                 <span style={{margin: '10px'}}>
                   <a href={storeBadge.badge_link.href}>
