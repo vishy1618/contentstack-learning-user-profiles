@@ -36,7 +36,7 @@ const Wrapper = ({ element }) => {
       setPersonalizationReady(true);
     }
     personalize();
-  });
+  }, []);
 
   return (
     <PersonalizationContext.Provider value={personalizationReady}>
