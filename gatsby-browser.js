@@ -11,8 +11,6 @@ import React, {
 
 import Personalization from "personalization-sdk-js"
 
-// You can delete this file if you're not using it
-import { IpLocation } from "./ip-location"
 import { PersonalizationContext } from "./src/personalization-context"
 
 export const wrapRootElement = ({ element }) => {
@@ -24,15 +22,8 @@ const Wrapper = ({ element }) => {
 
   useEffect(() => {
     async function personalize() {
-      const locationInfo = await IpLocation.getLocationInfo();
-      const hourOfDay = new Date().getHours();
-      const userAttributes = {
-        ...locationInfo,
-        hourOfDay,
-      };
-      await Personalization.init('blt2479e118d984e036');
+      await Personalization.init('5f86c3b0e51a370012d3a145');
 
-      Personalization.set(userAttributes);
       setPersonalizationReady(true);
     }
     personalize();

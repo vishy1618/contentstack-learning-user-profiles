@@ -20,6 +20,9 @@ const UseCases = () => {
         <li>
           <Link to="/use-cases/referrer">Referrer</Link>
         </li>
+        <li>
+          <Link to="/use-cases/location">Location</Link>
+        </li>
       </ul>
     </Layout>
   )

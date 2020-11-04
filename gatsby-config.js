@@ -35,7 +35,7 @@ module.exports = {
 
         // Delivery Token is a read-only credential . This is required.
         delivery_token: `cs753adc65a9a41f3843b2d0c4`,
-        
+
         // Environment where you published your data.
         environment: `development`,
 
